@@ -15,7 +15,6 @@
     <br>
     <div class="container">
         <form>
-            <input type="text" class="form-control" id="user_id">
             <button type="submit" class="btn btn-info" id="load_profile">プロフィール読み込み</button>
             <div class="form-group">
                 <label>名前</label>
@@ -321,15 +320,17 @@
     <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script>
-    liff.init(
-        data => {
-            // Now you can call LIFF API
-            const userId = data.context.userId;
-        },
-        err => {
-            // LIFF initialization failed
-        }
-    );
+    window.onload = function() {
+        liff.init(
+            data => {
+                // Now you can call LIFF API
+                const userId = data.context.userId;
+            },
+            err => {
+                // LIFF initialization failed
+            }
+        )
+    };
 
     $('#load_profile').click(function() {
         liff.getProfile()
