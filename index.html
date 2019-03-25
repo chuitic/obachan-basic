@@ -304,7 +304,7 @@
                 <label>嫌いな食べ物</label>
                 <input type="text" class="form-control" id="dislike_foods" placeholder="カエル、カンガルー、トンボ">
             </div>
-            <button type="submit" class="btn btn-primary">登録</button>
+            <button type="submit" class="btn btn-primary" id="register">登録</button>
         </form>
     </div>
     <footer>
@@ -331,26 +331,24 @@
             }
         )
     };
-
-    $('#load_profile').click(function() {
-        liff.getProfile()
-            .then(profile => {
-                const name = profile.displayName
-                const picture_url = profile.pictureUrl
-                const user_id = profile.userId
-                $('#name').val(name);
-                $('#user_id').val(user_id)
-                $('#picture_url').val(picture_url);
-                $('#picture').attr('src', picture_url);
-            })
-            .catch((err) => {
-                console.log('error', err);
-            });
-    });
     $(function() {
-
+        $('#load_profile').click(function() {
+            liff.getProfile()
+                .then(profile => {
+                    const name = profile.displayName
+                    const picture_url = profile.pictureUrl
+                    const user_id = profile.userId
+                    $('#name').val(name);
+                    $('#user_id').val(user_id)
+                    $('#picture_url').val(picture_url);
+                    $('#picture').attr('src', picture_url);
+                })
+                .catch((err) => {
+                    console.log('error', err);
+                });
+        });
         // 「#execute」をクリックしたとき
-        $('#execute').click(function() {
+        $('#register').click(function() {
             // Ajax通信を開始する
             $.ajax({
                     url: 'https://cerulean-hummingbird-7374.twil.io/testpath',
